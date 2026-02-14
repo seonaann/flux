@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function FluxDashboard({ goToLanding }) {
+export default function FluxDashboard({
+  goToLanding,
+  goToEnergy,
+  goToBilling,
+  goToAlerts,
+  goToCarbon,
+}) {
   const statsData = [
     { title: "⚡ Current Usage", value: "24.7 kWh", trend: "↓ 12%" },
     { title: "💰 Monthly Bill", value: "₹1,250", trend: "↓ ₹180" },
@@ -33,6 +39,11 @@ export default function FluxDashboard({ goToLanding }) {
     { icon: "💻", name: "Home Office", power: "0.5 kW" },
   ];
 
+  // ✅ Scroll to Top Function
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div style={styles.container}>
       {/* Animated Background */}
@@ -43,11 +54,25 @@ export default function FluxDashboard({ goToLanding }) {
         <h2 style={styles.logo}>⚡ FLUX</h2>
 
         <div style={styles.menu}>
-          <p>  Dashboard</p>
-          <p>  Energy</p>
-          <p>  Billing</p>
-          <p>  Alerts</p>
-          <p>  Carbon</p>
+          <p style={styles.link} onClick={scrollToTop}>
+            Dashboard
+          </p>
+
+          <p style={styles.link} onClick={goToEnergy}>
+            Energy
+          </p>
+
+          <p style={styles.link} onClick={goToBilling}>
+            Billing
+          </p>
+
+          <p style={styles.link} onClick={goToAlerts}>
+            Alerts
+          </p>
+
+          <p style={styles.link} onClick={goToCarbon}>
+            Carbonfootprint
+          </p>
         </div>
 
         <button onClick={goToLanding} style={styles.logoutBtn}>
@@ -137,7 +162,7 @@ export default function FluxDashboard({ goToLanding }) {
   );
 }
 
-/* ✅ Styles (Initial + Final Enhancements) */
+/* ✅ Styles */
 const styles = {
   container: {
     display: "flex",
@@ -185,6 +210,13 @@ const styles = {
     fontSize: "1.1rem",
   },
 
+  link: {
+    cursor: "pointer",
+    padding: "0.5rem",
+    borderRadius: "10px",
+    transition: "0.3s",
+  },
+
   logoutBtn: {
     padding: "0.8rem",
     borderRadius: "10px",
@@ -223,7 +255,6 @@ const styles = {
     padding: "1.5rem",
     borderRadius: "18px",
     background: "rgba(255,255,255,0.08)",
-    transition: "0.3s",
   },
 
   value: {
@@ -256,7 +287,6 @@ const styles = {
     flex: 1,
     background: "linear-gradient(to top,#00F0FF,#00FF87)",
     borderRadius: "8px",
-    animation: "grow 1s ease forwards",
   },
 
   alertCard: {
