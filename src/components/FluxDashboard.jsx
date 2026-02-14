@@ -43,11 +43,11 @@ export default function FluxDashboard({ goToLanding }) {
         <h2 style={styles.logo}>⚡ FLUX</h2>
 
         <div style={styles.menu}>
-          <p>🏠 Dashboard</p>
-          <p>💡 Energy</p>
-          <p>💰 Billing</p>
-          <p>🔔 Alerts</p>
-          <p>🌱 Carbon</p>
+          <p>  Dashboard</p>
+          <p>  Energy</p>
+          <p>  Billing</p>
+          <p>  Alerts</p>
+          <p>  Carbon</p>
         </div>
 
         <button onClick={goToLanding} style={styles.logoutBtn}>
@@ -75,7 +75,7 @@ export default function FluxDashboard({ goToLanding }) {
 
         {/* Chart Section */}
         <div style={styles.sectionBox}>
-          <h2>📊 Real-Time Usage Chart</h2>
+          <h2> Real-Time Usage Chart</h2>
 
           <div style={styles.chart}>
             {[45, 60, 35, 70, 55, 80, 65].map((h, i) => (
@@ -93,7 +93,7 @@ export default function FluxDashboard({ goToLanding }) {
 
         {/* Alerts Section */}
         <div style={styles.sectionBox}>
-          <h2>🚨 Recent Alerts</h2>
+          <h2> Recent Alerts</h2>
 
           {alerts.map((alert, i) => (
             <div key={i} style={styles.alertCard}>
