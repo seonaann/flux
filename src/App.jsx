@@ -1,19 +1,24 @@
-import { useState, useEffect } from "react";
-import FluxIntro from "./components/Intro";
-import Login from "./components/Login";
+import { useState } from "react";
+import FluxIntro from "./components/FluxIntro";
+import FluxLandingPage from "./components/Landingpage";
+import FluxAuth from "./components/Login";
 
 function App() {
-  const [showIntro, setShowIntro] = useState(true);
+  const [page, setPage] = useState("intro");
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowIntro(false);
-    }, 4000); // 4 seconds
+  return (
+    <>
+      {page === "intro" && (
+        <FluxIntro goNext={() => setPage("landing")} />
+      )}
 
-    return () => clearTimeout(timer);
-  }, []);
+      {page === "landing" && (
+        <FluxLandingPage goToLogin={() => setPage("login")} />
+      )}
 
-  return showIntro ? <FluxIntro /> : <Login />;
+      {page === "login" && <FluxAuth />}
+    </>
+  );
 }
 
 export default App;
