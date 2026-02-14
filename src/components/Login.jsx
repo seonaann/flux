@@ -1,289 +1,162 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-export default function FluxAuth() {
-  const [isSignIn, setIsSignIn] = useState(true);
+export default function Login({ goToDashboard }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    // Simple fake login validation (UNCHANGED)
+    if (email && password) {
+      goToDashboard();
+    } else {
+      alert("Please enter email and password");
+    }
+  };
 
   return (
-    <div style={styles.wrapper}>
-      {/* Background Glow */}
-      <div style={styles.backgroundGlow} />
+    <div style={styles.container}>
+      {/* Animated Background Glow */}
+      <div style={styles.bgGlow}></div>
 
       <div style={styles.card}>
-        {/* Logo */}
-        <div style={styles.logo}>Flux</div>
-        <div style={styles.subtitle}>Smart Energy Usage Tracker</div>
+        {/* Flux Logo */}
+        <h2 style={styles.logo}>Flux</h2>
 
-        {/* Toggle Buttons */}
-        <div style={styles.toggleWrapper}>
-          <button
-            onClick={() => setIsSignIn(true)}
-            style={{
-              ...styles.toggleButton,
-              ...(isSignIn ? styles.activeToggle : {})
-            }}
-          >
-            Sign In
-          </button>
+        {/* Subtitle */}
+        <p style={styles.subtitle}>Smart Energy Usage Tracker</p>
 
-          <button
-            onClick={() => setIsSignIn(false)}
-            style={{
-              ...styles.toggleButton,
-              ...(!isSignIn ? styles.activeToggle : {})
-            }}
-          >
-            Sign Up
-          </button>
-        </div>
+        {/* Email Input */}
+        <input
+          type="email"
+          placeholder="you@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={styles.input}
+        />
 
-        {/* Forms */}
-        {isSignIn ? <SignInForm /> : <SignUpForm />}
+        {/* Password Input */}
+        <input
+          type="password"
+          placeholder="••••••••"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={styles.input}
+        />
 
-        <div style={styles.footer}>
-          © 2026 Flux Energy Tracker
-        </div>
+        {/* Login Button */}
+        <button onClick={handleLogin} style={styles.button}>
+          Login
+        </button>
+
+        {/* Footer */}
+        <p style={styles.footer}>© 2026 Flux Energy Tracker</p>
       </div>
+
+      {/* Animation Keyframes */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap');
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }
 
-/* ========================= */
-/* ======= SIGN IN ========= */
-/* ========================= */
-
-function SignInForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Sign In:", { email, password });
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <InputGroup
-        label="Email"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="you@example.com"
-      />
-
-      <InputGroup
-        label="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="••••••••"
-      />
-
-      <SubmitButton>Sign In</SubmitButton>
-    </form>
-  );
-}
-
-/* ========================= */
-/* ======= SIGN UP ========= */
-/* ========================= */
-
-function SignUpForm() {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Sign Up:", { fullName, email, password });
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <InputGroup
-        label="Full Name"
-        type="text"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-        placeholder="John Doe"
-      />
-
-      <InputGroup
-        label="Email"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="you@example.com"
-      />
-
-      <InputGroup
-        label="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Create a password"
-      />
-
-      <SubmitButton>Create Account</SubmitButton>
-    </form>
-  );
-}
-
-/* ========================= */
-/* ===== INPUT FIELD ======= */
-/* ========================= */
-
-function InputGroup({ label, type, value, onChange, placeholder }) {
-  return (
-    <div style={{ marginBottom: "1.4rem" }}>
-      <label style={styles.label}>{label}</label>
-      <input
-        type={type}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        style={styles.input}
-      />
-    </div>
-  );
-}
-
-/* ========================= */
-/* ===== BUTTON STYLE ====== */
-/* ========================= */
-
-function SubmitButton({ children }) {
-  const [hover, setHover] = useState(false);
-
-  return (
-    <button
-      type="submit"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      style={{
-        ...styles.submitButton,
-        transform: hover ? "translateY(-3px)" : "translateY(0)"
-      }}
-    >
-      {children}
-    </button>
-  );
-}
-
-/* ========================= */
-/* ========= STYLES ======== */
-/* ========================= */
-
+/* ✅ Styles Updated Only */
 const styles = {
-  wrapper: {
-    fontFamily: "'DM Sans', sans-serif",
-    background: "#1A0B2E",
-    minHeight: "100vh",
+  container: {
+    height: "100vh",
     display: "flex",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
+    background: "#1A0B2E",
+    fontFamily: "'DM Sans', sans-serif",
     position: "relative",
-    color: "white"
+    overflow: "hidden",
   },
 
-  backgroundGlow: {
-    position: "fixed",
+  /* Background Glow */
+  bgGlow: {
+    position: "absolute",
     inset: 0,
     background: `
-      radial-gradient(circle at 20% 30%, rgba(0,240,255,0.15), transparent 40%),
-      radial-gradient(circle at 80% 70%, rgba(0,255,135,0.15), transparent 40%)
+      radial-gradient(circle at 20% 30%, rgba(0,240,255,0.15), transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(0,255,135,0.15), transparent 45%)
     `,
-    zIndex: -1
+    zIndex: 0,
   },
 
   card: {
-    width: "100%",
-    maxWidth: "420px",
+    width: "380px",
+    padding: "3rem 2.5rem",
+    borderRadius: "30px",
     background: "rgba(255,255,255,0.05)",
     backdropFilter: "blur(20px)",
     border: "1px solid rgba(0,240,255,0.25)",
-    borderRadius: "30px",
-    padding: "3rem 2.5rem",
     boxShadow: "0 30px 80px rgba(0,0,0,0.4)",
-    margin: "1rem"
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.2rem",
+    zIndex: 2,
+    animation: "fadeInUp 0.8s ease",
   },
 
+  /* Flux Logo */
   logo: {
-    fontSize: "2.5rem",
-    fontWeight: 800,
+    fontFamily: "'Syne', sans-serif",
+    fontSize: "2.6rem",
+    fontWeight: "800",
     textAlign: "center",
     background: "linear-gradient(135deg, #00F0FF, #00FF87)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
-    marginBottom: "0.5rem"
+    marginBottom: "0.2rem",
   },
 
   subtitle: {
     textAlign: "center",
-    color: "rgba(255,255,255,0.7)",
-    marginBottom: "2.5rem"
-  },
-
-  toggleWrapper: {
-    display: "flex",
-    background: "rgba(0,0,0,0.3)",
-    borderRadius: "50px",
-    marginBottom: "2rem"
-  },
-
-  toggleButton: {
-    flex: 1,
-    padding: "0.8rem",
-    border: "none",
-    background: "transparent",
-    color: "rgba(255,255,255,0.7)",
-    fontWeight: 600,
-    cursor: "pointer",
-    borderRadius: "50px",
-    transition: "all 0.3s ease"
-  },
-
-  activeToggle: {
-    background: "linear-gradient(135deg, #00F0FF, #00FF87)",
-    color: "#1A0B2E"
-  },
-
-  label: {
-    fontSize: "0.85rem",
-    color: "rgba(255,255,255,0.6)",
-    marginBottom: "0.4rem",
-    display: "block"
+    fontSize: "0.95rem",
+    color: "rgba(255,255,255,0.65)",
+    marginBottom: "1.5rem",
   },
 
   input: {
-    width: "100%",
     padding: "0.9rem 1.1rem",
     borderRadius: "14px",
     border: "1px solid rgba(255,255,255,0.15)",
     background: "rgba(0,0,0,0.4)",
     color: "white",
-    fontSize: "0.95rem",
-    outline: "none"
+    fontSize: "1rem",
+    outline: "none",
+    transition: "0.3s ease",
   },
 
-  submitButton: {
-    width: "100%",
+  button: {
     padding: "1rem",
     borderRadius: "50px",
     border: "none",
-    fontWeight: 700,
-    fontSize: "1rem",
     cursor: "pointer",
+    fontWeight: "700",
+    fontSize: "1rem",
     background: "linear-gradient(135deg, #00F0FF, #00FF87)",
     color: "#1A0B2E",
     boxShadow: "0 15px 40px rgba(0,240,255,0.4)",
-    marginTop: "1rem",
-    transition: "transform 0.2s ease"
+    transition: "transform 0.2s ease",
   },
 
   footer: {
-    marginTop: "1.8rem",
     textAlign: "center",
-    fontSize: "0.85rem",
-    color: "rgba(255,255,255,0.5)"
-  }
+    fontSize: "0.8rem",
+    marginTop: "1.2rem",
+    color: "rgba(255,255,255,0.4)",
+  },
 };

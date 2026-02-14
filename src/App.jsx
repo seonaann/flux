@@ -1,7 +1,8 @@
 import { useState } from "react";
-import FluxIntro from "./components/FluxIntro";
-import FluxLandingPage from "./components/Landingpage";
-import FluxAuth from "./components/Login";
+import Intro from "./components/Fluxinto";
+import FluxLandingPage from "./components/Landing";
+import Login from "./components/Login";
+import FluxDashboard from "./components/FluxDashboard";
 
 function App() {
   const [page, setPage] = useState("intro");
@@ -9,14 +10,20 @@ function App() {
   return (
     <>
       {page === "intro" && (
-        <FluxIntro goNext={() => setPage("landing")} />
+        <Intro goNext={() => setPage("landing")} />
       )}
 
       {page === "landing" && (
         <FluxLandingPage goToLogin={() => setPage("login")} />
       )}
 
-      {page === "login" && <FluxAuth />}
+      {page === "login" && (
+        <Login goToDashboard={() => setPage("dashboard")} />
+      )}
+
+      {page === "dashboard" && (
+        <FluxDashboard goToLanding={() => setPage("landing")} />
+      )}
     </>
   );
 }
