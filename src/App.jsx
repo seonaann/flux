@@ -10,7 +10,6 @@ import Energy from "./components/Energy";
 import Billing from "./components/Billing";
 import Alerts from "./components/Alerts";
 import Carbonfootprint from "./components/Carbonfootprint";
-
 function App() {
   const [page, setPage] = useState("intro");
 
@@ -38,15 +37,28 @@ function App() {
           goToEnergy={() => setPage("energy")}
           goToBilling={() => setPage("billing")}
           goToAlerts={() => setPage("alerts")}
-          goToCarbon={() => setPage("carbon")}
+          goToCarbon={() => setPage("carbonfootprint")}
+
         />
       )}
 
       {/* Sidebar Navigation Pages */}
-      {page === "energy" && <Energy />}
-      {page === "billing" && <Billing />}
-      {page === "alerts" && <Alerts />}
-      {page === "carbon" && <Carbonfootprint />}
+      {page === "energy" && (
+  <Energy goToDashboard={() => setPage("dashboard")} />
+)}
+
+      {page === "billing" && (
+  <Billing goToDashboard={() => setPage("dashboard")} />
+)}
+     {page === "alerts" && (
+  <Alerts goToDashboard={() => setPage("dashboard")} />
+)}
+
+   {page === "carbonfootprint" && (
+  <Carbonfootprint goToDashboard={() => setPage("dashboard")} />
+)}
+
+
     </>
   );
 }

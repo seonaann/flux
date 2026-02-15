@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Chart, registerables } from "chart.js";
-import { Zap, Activity, ShieldCheck, PieChart, Info } from "lucide-react";
+import {
+  Zap,
+  Activity,
+  ShieldCheck,
+  PieChart,
+  Info,
+  ChevronLeft,
+} from "lucide-react";
 
 Chart.register(...registerables);
 
@@ -52,7 +59,7 @@ const DeviceCard = ({ name, usage }) => (
   </div>
 );
 
-export default function Energy() {
+export default function Energy({ goToDashboard }) {
   const [live, setLive] = useState(1.82);
   const [total, setTotal] = useState(24.7);
   const [cost, setCost] = useState(284);
@@ -154,7 +161,7 @@ export default function Energy() {
   }, [live, total]);
 
   return (
-    <div className="min-h-screen bg-[#1A0B2E] text-white font-sans overflow-hidden selection:bg-cyan-400 selection:text-black relative">
+    <div className="min-h-screen bg-[#1A0B2E] text-white font-sans overflow-hidden relative">
       {/* Background Glow */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-cyan-400/10 blur-[120px] rounded-full animate-pulse" />
@@ -163,6 +170,17 @@ export default function Energy() {
 
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 bg-[#1A0B2E]/80 backdrop-blur-xl border-b border-cyan-400/10 py-4 px-6 md:px-12 flex justify-between items-center">
+
+        {/* ✅ Back Button Left */}
+        <button
+          onClick={goToDashboard}
+          className="flex items-center gap-2 text-white/50 hover:text-cyan-400 transition font-bold"
+        >
+          <ChevronLeft size={18} />
+          Dashboard
+        </button>
+
+        {/* Flux Logo Center */}
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 bg-gradient-to-br from-cyan-400 to-emerald-400 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-400/20">
             <Zap className="text-black" size={20} />
@@ -173,6 +191,7 @@ export default function Energy() {
           </span>
         </div>
 
+        {/* Live Badge Right */}
         <div className="flex items-center gap-2 text-cyan-400 text-xs font-black uppercase tracking-widest">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
@@ -182,8 +201,8 @@ export default function Energy() {
         </div>
       </nav>
 
+      {/* Main */}
       <main className="relative pt-32 pb-20 px-6 max-w-7xl mx-auto space-y-10">
-        {/* Header */}
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <h1 className="text-5xl font-black tracking-tight">
@@ -207,8 +226,8 @@ export default function Energy() {
           </div>
         </header>
 
-        {/* KPI Grid + Fade Animation */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        {/* KPI Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <KPICard title="Total Today" value={total.toFixed(1)} unit="kWh" />
           <KPICard title="Current Load" value={live.toFixed(2)} unit="kW" />
           <KPICard title="Cost Today" value={`₹${cost}`} />
@@ -217,50 +236,28 @@ export default function Energy() {
 
         {/* Chart + Devices */}
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Chart Card Premium */}
-          <div className="lg:col-span-2 bg-white/5 backdrop-blur-xl border border-cyan-400/20 rounded-[35px] p-8 relative overflow-hidden group">
-            {/* Big Zap Glow Icon */}
-            <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-              <Zap size={120} className="text-cyan-400" />
-            </div>
-
-            {/* Title + Active Badge */}
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-xl font-bold flex items-center gap-3">
-                Live Power Trend
-                <span className="text-[10px] bg-cyan-400/20 text-cyan-400 px-2 py-0.5 rounded-full uppercase">
-                  Active
-                </span>
-              </h2>
-
-              <div className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#00F0FF]" />
-            </div>
+          <div className="lg:col-span-2 bg-white/5 border border-cyan-400/20 rounded-[35px] p-8">
+            <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
+              <Zap className="text-cyan-400" size={18} />
+              Live Power Trend
+            </h2>
 
             <div className="h-[350px]">
               <canvas ref={chartRef}></canvas>
             </div>
           </div>
 
-          {/* Device Column Premium */}
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[35px] p-8 flex flex-col">
+          <div className="bg-white/5 border border-white/10 rounded-[35px] p-8">
             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
               <PieChart className="text-emerald-400" size={18} />
               Device Breakdown
             </h2>
 
-            <div className="space-y-4 flex-grow">
+            <div className="space-y-4">
               <DeviceCard name="Air Conditioner" usage={deviceLoads.ac} />
               <DeviceCard name="Refrigerator" usage={deviceLoads.fridge} />
               <DeviceCard name="Smart Lighting" usage={deviceLoads.light} />
               <DeviceCard name="Washing Machine" usage={deviceLoads.wm} />
-            </div>
-
-            {/* Efficiency Footer */}
-            <div className="mt-8 pt-6 border-t border-white/10">
-              <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-white/30">
-                <span>System Efficiency</span>
-                <span className="text-emerald-400">94.2% Peak</span>
-              </div>
             </div>
           </div>
         </div>
