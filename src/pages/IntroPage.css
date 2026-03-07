@@ -1,0 +1,306 @@
+.intro-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--deep-purple);
+    color: white;
+    font-family: 'Syne', sans-serif;
+}
+
+.intro-container .energy-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 240, 255, 0.2), transparent 70%);
+    animation: pulse 3s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.intro-container .lightning-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(0, 240, 255, 0.15), transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 245, 0, 0.1), transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(0, 255, 135, 0.12), transparent 50%);
+    animation: energyShift 2s ease-in-out;
+}
+
+@keyframes energyShift {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.intro-container .logo-container {
+    position: relative;
+    z-index: 10;
+}
+
+.intro-container .flux-text {
+    font-size: 10rem;
+    font-weight: 800;
+    letter-spacing: -5px;
+    position: relative;
+    display: inline-block;
+}
+
+.intro-container .flux-text span {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--electric-cyan), var(--accent-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    transform: translateY(100px) rotateX(-90deg);
+    animation: letterDrop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.intro-container .flux-text span:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.intro-container .flux-text span:nth-child(2) {
+    animation-delay: 0.35s;
+}
+
+.intro-container .flux-text span:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+.intro-container .flux-text span:nth-child(4) {
+    animation-delay: 0.65s;
+}
+
+@keyframes letterDrop {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) rotateX(-90deg);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+.intro-container .glow-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.3), transparent 70%);
+    filter: blur(60px);
+    animation: glowPulse 2s ease-in-out infinite;
+    opacity: 0;
+    animation-delay: 1s;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+.intro-container .particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--electric-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--electric-cyan);
+    opacity: 0;
+    animation: particleFloat 2s ease-out forwards;
+}
+
+@keyframes particleFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-200px) translateX(var(--tx)) scale(1);
+    }
+}
+
+.intro-container .tagline {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeInUpIntro 1s ease-out 1.2s forwards;
+}
+
+@keyframes fadeInUpIntro {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.intro-container .lightning-bolt {
+    position: absolute;
+    width: 4px;
+    height: 150px;
+    background: linear-gradient(to bottom, var(--energy-yellow), transparent);
+    box-shadow: 0 0 20px var(--energy-yellow);
+    opacity: 0;
+    animation: lightning 0.3s ease-out;
+}
+
+.intro-container .lightning-bolt:nth-child(1) {
+    top: 20%;
+    left: 25%;
+    animation-delay: 0.5s;
+}
+
+.intro-container .lightning-bolt:nth-child(2) {
+    top: 30%;
+    right: 20%;
+    animation-delay: 1s;
+}
+
+.intro-container .lightning-bolt:nth-child(3) {
+    bottom: 25%;
+    left: 15%;
+    animation-delay: 1.5s;
+}
+
+@keyframes lightning {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    10%,
+    30%,
+    50% {
+        opacity: 1;
+    }
+
+    20%,
+    40% {
+        opacity: 0.3;
+    }
+}
+
+.intro-container .progress-ring {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out 1.5s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.intro-container .progress-ring circle {
+    fill: none;
+    stroke: var(--electric-cyan);
+    stroke-width: 4;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    animation: progressFill 2s ease-out 1.5s forwards;
+    transform-origin: center;
+    transform: rotate(-90deg);
+}
+
+@keyframes progressFill {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.intro-container.fade-out {
+    animation: fadeOutScreen 0.8s ease-out forwards;
+}
+
+@keyframes fadeOutScreen {
+    to {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width: 768px) {
+    .intro-container .flux-text {
+        font-size: 5rem;
+        letter-spacing: -3px;
+    }
+
+    .intro-container .tagline {
+        font-size: 0.9rem;
+        letter-spacing: 4px;
+        bottom: -60px;
+    }
+
+    .intro-container .glow-effect {
+        width: 400px;
+        height: 400px;
+    }
+}

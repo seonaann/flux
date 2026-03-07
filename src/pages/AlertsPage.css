@@ -1,0 +1,323 @@
+.alerts-wrapper {
+    background: var(--deep-purple);
+    color: #ffffff;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+.alerts-wrapper .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    background: rgba(26, 11, 46, 0.9);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(0, 240, 255, 0.15);
+    padding: 2rem 0;
+    z-index: 100;
+    animation: slideInLeft 0.6s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.alerts-wrapper .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--electric-cyan), var(--accent-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0 2rem;
+    margin-bottom: 3rem;
+}
+
+.alerts-wrapper .nav-menu {
+    list-style: none;
+}
+
+.alerts-wrapper .nav-item {
+    margin-bottom: 0.5rem;
+}
+
+.alerts-wrapper .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    font-weight: 500;
+}
+
+.alerts-wrapper .nav-link:hover,
+.alerts-wrapper .nav-link.active {
+    color: var(--electric-cyan);
+    background: rgba(0, 240, 255, 0.1);
+    border-left-color: var(--electric-cyan);
+}
+
+.alerts-wrapper .nav-icon {
+    font-size: 1.3rem;
+}
+
+.alerts-wrapper .user-profile {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.alerts-wrapper .avatar {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--electric-cyan), var(--accent-green));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--deep-purple);
+}
+
+.alerts-wrapper .user-info h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+}
+
+.alerts-wrapper .user-info p {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Main Content ── */
+.alerts-wrapper .main-content {
+    margin-left: 280px;
+    padding: 2rem 3rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ── Header / Title ── */
+.alerts-wrapper .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.alerts-wrapper .header-left h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.alerts-wrapper .header-left p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+}
+
+.alerts-wrapper .header-right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* ── Cards ── */
+.alerts-wrapper .card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 25px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alerts-wrapper .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.alerts-wrapper .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.alerts-wrapper .bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(ellipse at 20% 50%, rgba(0, 240, 255, 0.12), transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 245, 0, 0.08), transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(0, 255, 135, 0.1), transparent 50%);
+}
+
+.alerts-wrapper .btn-secondary {
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: 15px;
+    color: var(--electric-cyan);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.alerts-wrapper .btn-secondary:hover {
+    background: rgba(0, 240, 255, 0.1);
+    border-color: var(--electric-cyan);
+}
+
+.alerts-wrapper .btn-active {
+    background: linear-gradient(135deg, var(--electric-cyan), var(--accent-green));
+    color: var(--deep-purple);
+    border: none;
+}
+
+.alerts-wrapper .alerts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.alerts-wrapper .alert-item {
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 4px solid;
+    border-radius: 12px;
+    padding: 1.2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+    animation: slideInRight 0.6s ease-out both;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.alerts-wrapper .alert-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.alerts-wrapper .alert-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.alerts-wrapper .alert-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.alerts-wrapper .alert-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.alerts-wrapper .alert-item:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateX(5px);
+}
+
+.alerts-wrapper .alert-warning {
+    border-color: var(--warning-orange);
+}
+
+.alerts-wrapper .alert-danger {
+    border-color: var(--alert-red);
+}
+
+.alerts-wrapper .alert-success {
+    border-color: var(--accent-green);
+}
+
+.alerts-wrapper .alert-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.alerts-wrapper .alert-content h4 {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+}
+
+.alerts-wrapper .alert-content p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.alerts-wrapper .alert-time {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+}
