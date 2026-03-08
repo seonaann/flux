@@ -9,9 +9,9 @@ const HomePage = () => {
             <nav className="home-nav">
                 <div className="logo">Flux</div>
                 <div className="nav-links">
-                    <Link to="#features">Features</Link>
-                    <Link to="#about">About</Link>
-                    <Link to="#mission">Mission</Link>
+                    <a href="#features">Features</a>
+                    <a href="#about">About</a>
+                    <a href="#mission">Mission</a>
                 </div>
                 <div className="auth-buttons">
                     <Link to="/signup" className="btn btn-signup btn-large">Start Free Trial</Link>

@@ -1,8 +1,13 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './AlertsPage.css';
 
 const AlertsPage = () => {
+    const navigate = useNavigate();
+
+    const handleSignOut = () => {
+        navigate('/');
+    };
     const [activeTab, setActiveTab] = useState('all');
 
     const getAlerts = () => {
@@ -64,12 +69,18 @@ const AlertsPage = () => {
                         </li>
                     </ul>
                 </nav>
-                <div className="user-profile">
-                    <div className="avatar">JD</div>
-                    <div className="user-info">
-                        <h4>John Doe</h4>
-                        <p>Premium Plan</p>
+                <div className="sidebar-bottom">
+                    <div className="user-profile">
+                        <div className="avatar">JD</div>
+                        <div className="user-info">
+                            <h4>John Doe</h4>
+                            <p>Premium Plan</p>
+                        </div>
                     </div>
+                    <button className="signout-btn" onClick={handleSignOut}>
+                        <span className="signout-icon">🚪</span>
+                        <span>Sign Out</span>
+                    </button>
                 </div>
             </aside>
 
